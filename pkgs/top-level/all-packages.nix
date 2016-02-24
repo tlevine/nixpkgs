@@ -12431,6 +12431,10 @@ let
     gtk = gtk3;
   };
 
+  hp2xx = callPackage ../applications/graphics/hp2xx {
+    libpng = libpng12;
+  };
+
   ht = callPackage ../applications/editors/ht { };
 
   htmldoc = callPackage ../applications/misc/htmldoc {
