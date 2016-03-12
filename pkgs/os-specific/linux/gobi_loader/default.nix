@@ -11,8 +11,10 @@ stdenv.mkDerivation {
     sha256 = "0ebe933da62bb38db556a4a20d25f4109cc1ae062ddce2f679059628e2487aeb";
   }
 
-  # TODO: Patch 60-gobi.rules
-  # Switch /lib/firmware/gobi to a different directory.
+  # Switch /lib/firmware/gobi to the local /lib/firmware/gobi
+  patchPhase = ''
+    sed -i s+/lib/firmware/gobi+${out}/lib/firmware/gobi+ 60-gobi.rules
+  ''
 
   postInstall = ''
     wine 7xwc48ww.exe
