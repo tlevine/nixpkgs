@@ -10,6 +10,18 @@ stdenv.mkDerivation {
     url = "https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles/7xwc48ww.exe";
     sha256 = "0ebe933da62bb38db556a4a20d25f4109cc1ae062ddce2f679059628e2487aeb";
   }
+
+  # TODO: Patch 60-gobi.rules
+  # Switch /lib/firmware/gobi to a different directory.
+
+  postInstall = ''
+    wine 7xwc48ww.exe
+    wine msiexec /a ~/.wine/drive_c/DRIVERS/WWANQL/Driver/GobiInstaller.msi /qb TARGETDIR=C:\\DRIVERS\\GOBI
+
+    # Just one of the vendor-specific drivers
+    # cp ~/.wine/drive_c/DRIVERS/GOBI/Images/Lenovo/9/amss.mbn
+  ''
+
   meta = {
     description = "IBM ThinkPad hardware functions driver";
     homepage = "http://www.codon.org.uk/~mjg59/gobi_loader/";
