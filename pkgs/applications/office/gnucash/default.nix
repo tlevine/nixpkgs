@@ -1,6 +1,7 @@
 { fetchurl, stdenv, pkgconfig, libxml2, gconf, glib, gtk, libgnomeui, libofx
 , libgtkhtml, gtkhtml, libgnomeprint, goffice, enchant, gettext, libbonoboui
 , intltool, perl, guile, slibGuile, swig, isocodes, bzip2, makeWrapper, libglade
+, libdbi, libdbiDrivers
 , libgsf, libart_lgpl, perlPackages, aqbanking, gwenhywfar
 }:
 
@@ -22,9 +23,17 @@ stdenv.mkDerivation rec {
     libgnomeprint goffice enchant gettext intltool perl guile slibGuile
     swig isocodes bzip2 makeWrapper libofx libglade libgsf libart_lgpl
     perlPackages.DateManip perlPackages.FinanceQuote aqbanking gwenhywfar
+    libdbi libdbiDrivers
   ];
 
-  configureFlags = "CFLAGS=-O3 CXXFLAGS=-O3 --disable-dbi --enable-ofx --enable-aqbanking";
+  configureFlags = [
+    "CFLAGS=-O3"
+    "CXXFLAGS=-O3"
+    "--enable-dbi"
+    "--with-dbi-dbd-dir=${libdbiDrivers}/lib/dbd/"
+    "--enable-ofx"
+    "--enable-aqbanking"
+  ];
 
   postInstall = ''
     # Auto-updaters don't make sense in Nix.
