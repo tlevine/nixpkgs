@@ -17,8 +17,9 @@ stdenv.mkDerivation {
   ''
 
   postInstall = ''
-    wine 7xwc48ww.exe
-    wine msiexec /a ~/.wine/drive_c/DRIVERS/WWANQL/Driver/GobiInstaller.msi /qb TARGETDIR=C:\\DRIVERS\\GOBI
+    export WINEPREFIX=/blah/blah
+    wine 7xwc48ww.exe /silent
+    wine msiexec /a ${WINEPREFIX}/drive_c/DRIVERS/WWANQL/Driver/GobiInstaller.msi /qb TARGETDIR=C:\\DRIVERS\\GOBI
 
     # Just one of the vendor-specific drivers
     # cp ~/.wine/drive_c/DRIVERS/GOBI/Images/Lenovo/9/amss.mbn
