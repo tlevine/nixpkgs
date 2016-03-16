@@ -136,6 +136,8 @@ in modules // {
 
   plantuml = callPackage ../tools/misc/plantuml { };
 
+  plyvel = callPackage ../development/python-modules/plyvel { };
+
   pycairo = callPackage ../development/python-modules/pycairo {
   };
 
