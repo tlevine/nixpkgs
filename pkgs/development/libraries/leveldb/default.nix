@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, sqlite, kyotocabinet }:
+{ stdenv, fetchFromGitHub, sqlite, kyotocabinet, snappy }:
 
 stdenv.mkDerivation rec {
   name = "leveldb-${version}";
@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     sha256 = "1bnsii47vbyqnbah42qgq6pbmmcg4k3fynjnw7whqfv6lpdgmb8d";
   };
 
-  buildInputs = [ sqlite kyotocabinet ];
+  buildInputs = [ sqlite kyotocabinet snappy ];
 
   buildPhase = ''
     make all db_bench{,_sqlite3,_tree_db} leveldbutil libmemenv.a
