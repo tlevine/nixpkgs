@@ -1689,6 +1689,8 @@ let
 
   goaccess = callPackage ../tools/misc/goaccess { };
 
+  gobi_loader = callPackage ../os-specific/linux/gobi_loader { };
+
   go-mtpfs = goPackages.mtpfs.bin // { outputs = [ "bin" ]; };
 
   go-pup = goPackages.pup.bin // { outputs = [ "bin" ]; };
