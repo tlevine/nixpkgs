@@ -7,6 +7,11 @@ stdenv.mkDerivation {
     sha256 = "78bdc255451cde1caa406e146b01a88828480c9c43272de8cffdb61627be754a";
   };
 
+  installPhase = ''
+    install -D gobi_loader $out/lib/udev/gobi_loader
+    install -D 60-gobi.rules $out/lib/udev/rules.d/60-gobi.rules
+  '';
+
   meta = {
     description = "IBM ThinkPad hardware functions driver";
     homepage = "http://www.codon.org.uk/~mjg59/gobi_loader/";
